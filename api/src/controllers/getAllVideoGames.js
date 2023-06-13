@@ -1,7 +1,6 @@
 const axios = require("axios");
-// const { API_KEY } = process.env;
-const API_KEY = "a7e821eabc8d4ba8ad490aa3af584ffc";
-const URL_BASE = "https://api.rawg.io/api/games";
+require("dotenv").config();
+const { API_KEY, URL_BASE } = process.env;
 const { Videogame, Genre } = require("../db");
 
 //mostrar solo id nombre imagen y genero en el compaginado principal
