@@ -20,7 +20,7 @@ const getAllVideoGamesByAPI = async (req, res) => {
         let obj = {
           id: game.id,
           name: game.name,
-          imagen: game.background_image,
+          image: game.background_image,
           genre: game.genres.map((genre) => genre.name),
         };
         videoGameInfo.push(obj);
