@@ -5,10 +5,9 @@ const { Videogame, Genre } = require("../db");
 
 const postVideoGames = async (req, res) => {
   try {
-    //genre debe ser array de id de los generos
     const { name, description, platforms, image, date, rating, genre, inDB } =
       req.body;
-    console.log(name, description, platforms, image, date, rating, genre, inDB);
+    //  console.log(name, description, platforms, image, date, rating, genre, inDB);
     let videojuego = await Videogame.create({
       name,
       description,
@@ -19,14 +18,16 @@ const postVideoGames = async (req, res) => {
       inDB,
     });
 
+    //  let genresDB = [];
     for (let i = 0; i < genre.length; i++) {
       let genreDb = await Genre.findAll({
         where: { name: genre[i] },
       });
-
       videojuego.addGenre(genreDb);
+      //   genresDB.push(genreDb[0].name);
+      //  console.log(genreDb);
     }
-
+    //  console.log(genresDB);
     res
       .status(200)
       .json({ message: `Videojuego creado con éxito`, videogame: videojuego });

@@ -15,7 +15,7 @@ const getVideogamesByName = async (req, res, next) => {
           [Op.iLike]: `%${name}%`,
         },
       },
-      attributes: ["id", "name", "image"],
+      attributes: ["id", "name", "image", "inDB"],
       include: [
         {
           model: Genre,
@@ -36,7 +36,11 @@ const getVideogamesByName = async (req, res, next) => {
           id: game.id,
           name: game.name,
           image: game.background_image,
-          genres: game.genres.map((genre) => genre.name),
+          genres: game.genres.map((genre) => {
+            return {
+              name: genre.name,
+            };
+          }),
         };
       }),
     ].slice(0, 15);

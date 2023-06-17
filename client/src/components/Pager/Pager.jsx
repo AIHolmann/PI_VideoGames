@@ -10,7 +10,11 @@ const Pager = ({ gamesPerPage, allGames, paginado }) => {
       <ul>
         {pageNumber &&
           pageNumber.map((number) => {
-            return <li onClick={() => paginado(number)}>{number}</li>;
+            return (
+              <li onClick={() => paginado(number)} key={number}>
+                {number}
+              </li>
+            );
           })}
       </ul>
     </nav>

@@ -1,7 +1,9 @@
 const Footer = () => {
   return (
     <div>
-      <h2>Hola soy el Footer</h2>
+      <h5>© Alejo Holmann. Todos los derechos reservados.</h5>
+      <h5>Diseño y Desarrollo: alejoholmann99@gmail.com</h5>
+      <h5>Linkedin: @AIHolmann </h5>
     </div>
   );
 };

@@ -21,7 +21,11 @@ const getAllVideoGamesByAPI = async (req, res) => {
           id: game.id,
           name: game.name,
           image: game.background_image,
-          genre: game.genres.map((genre) => genre.name),
+          genres: game.genres.map((genre) => {
+            return {
+              name: genre.name,
+            };
+          }),
         };
         videoGameInfo.push(obj);
         //tengo 20 videogames
@@ -36,7 +40,7 @@ const getAllVideoGamesByAPI = async (req, res) => {
 const getAllVideoGamesByDB = async () => {
   try {
     const videoGamesDB = await Videogame.findAll({
-      attributes: ["id", "name", "image"],
+      attributes: ["id", "name", "image", "inDB"],
       include: [
         {
           model: Genre,

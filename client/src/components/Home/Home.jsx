@@ -1,8 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getVideogames } from "../../redux/actions";
-import { Link } from "react-router-dom";
+import {
+  getVideogames,
+  filterVideogames /*
+  filterOrigin,
+  Order,*/,
+} from "../../redux/actions";
+
 import NavBar from "../NavBar/NavBar";
 import Pager from "../Pager/Pager";
 import Footer from "../Footer/Footer";
@@ -10,28 +15,54 @@ import Card from "../Card/Card";
 
 const Home = () => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getVideogames());
+  }, [dispatch]);
   const allGames = useSelector((state) => state.videogames);
+
+  const [orden, setOrden] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [gamesPerPage, setGamesPerPage] = useState(15);
   const indexOfLastGame = currentPage * gamesPerPage; //15, pero deberia ser 14
   const indexOfFirstGame = indexOfLastGame - gamesPerPage; // 0
-  const currentGames = allGames.slice(indexOfFirstGame, indexOfLastGame);
+  let currentGames = allGames.slice(indexOfFirstGame, indexOfLastGame);
+
+  const handleReload = (e) => {
+    e.preventDefault();
+    dispatch(getVideogames());
+  };
 
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  useEffect(() => {
-    dispatch(getVideogames());
-  }, []);
+  const handleFilterGenre = (e) => {
+    let valor = e.target.value;
+    e.preventDefault();
+    dispatch(filterVideogames(valor));
+    console.log(valor);
+  };
+  /*
+  const handleFilterOrigin = (e) => {
+    e.preventDefault();
+    dispatch(filterOrigin(e.target.value));
+  };
 
+  const handleOrder = (e) => {
+    e.preventDefault();
+    dispatch(Order(e.target.value));
+    setCurrentPage(1);
+    setOrden(`Ordenado ${e.target.value}`);
+  };
+*/
   return (
     <div>
-      <NavBar />
+      <NavBar handleReload={handleReload} />
       <div>
         <aside>
-          <select>
-            <option value="">Todos</option>
+          <select onChange={handleFilterGenre}>
+            <option value="All">Todos</option>
             <option value="Action">Action</option>
             <option value="Indie">Indie</option>
             <option value="Adventure">Adventure</option>
@@ -52,11 +83,12 @@ const Home = () => {
             <option value="Educational">Educational</option>
             <option value="Card">Card</option>
           </select>
-          <select name="" id="">
-            <option value="Api">Origen api</option>
-            <option value="DB">Origen db</option>
+          <select /*onChange={handleFilterOrigin}*/>
+            <option value="All">Todos</option>
+            <option value="Api">Traidos de la API</option>
+            <option value="DB">Creados por tí</option>
           </select>
-          <select>
+          <select /*onChange={handleOrder}*/>
             <option value="ascAlf">Ascendente Alfabeticamente</option>
             <option value="descAlf">Descendente Alfabeticamente</option>
             <option value="ascRat">Ascendente Rating</option>
@@ -64,11 +96,6 @@ const Home = () => {
           </select>
         </aside>
         <article>
-          <Pager
-            gamesPerPage={gamesPerPage}
-            allGames={allGames.length}
-            paginado={paginado}
-          />
           {currentGames &&
             currentGames.map((vg) => (
               <Card
@@ -79,6 +106,11 @@ const Home = () => {
                 genres={vg?.genres}
               />
             ))}
+          <Pager
+            gamesPerPage={gamesPerPage}
+            allGames={allGames.length}
+            paginado={paginado}
+          />
         </article>
         <footer>
           <Footer />
