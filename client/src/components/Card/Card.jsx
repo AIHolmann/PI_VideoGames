@@ -1,19 +1,20 @@
-const Card = ({ name, image, genre, genres }) => {
-  /*  const allGenres = genre
-    .map((el) => {
-      return el.name;
-    })
-    .join(", ");*/
+import { Link, useParams } from "react-router-dom";
+
+const Card = ({ name, image, genres, id }) => {
   let genresfinal = "";
-  if (genres) {
+  if (Array.isArray(genres)) {
     let genresdb = [];
     genres.map((el) => genresdb.push(el.name));
     genresfinal = genresdb.join(", ");
+  } else {
+    return (genresfinal = genres);
   }
   return (
     <div>
       <img src={image} alt={name} width="200px" height="250px" />
-      <h3>Name: {name}</h3>
+      <Link to={`/videogame/${id}`}>
+        <h3>Name: {name}</h3>
+      </Link>
       <h4>Genres: {genresfinal}</h4>
     </div>
   );

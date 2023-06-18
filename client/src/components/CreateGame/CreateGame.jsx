@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { postVideogame, getGenre } from "../../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
+import validate from "./validate";
 
 const CreateGame = () => {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const CreateGame = () => {
   }, []);
   const genres = useSelector((state) => state.genres);
 
+  const [error, setError] = useState({});
   const [input, setInput] = useState({
     name: "",
     image: "",
@@ -27,7 +29,15 @@ const CreateGame = () => {
       [e.target.name]: e.target.value,
     });
     console.log(input);
+    setError(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+    console.log(error);
   };
+
   const handleCheck = (e) => {
     if (e.target.checked) {
       setInput({
@@ -45,9 +55,11 @@ const CreateGame = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input);
+
     dispatch(postVideogame(input));
     alert("Personaje creado");
+    console.log("Soy del DISPATCH       ", input);
+
     setInput({
       name: "",
       image: "",
@@ -59,6 +71,20 @@ const CreateGame = () => {
     });
   };
 
+  const isFormValid =
+    input.name.trim() !== "" &&
+    input.image.trim() !== "" &&
+    input.genres.length > 0 &&
+    input.description.trim() !== "" &&
+    input.platforms.trim() !== "" &&
+    input.date.trim() !== "" &&
+    input.rating >= 0;
+  /*
+  const disabledB = () => {
+    if (Object.keys(error).length === 0) {
+      cambiarCondicion();
+    }
+  };*/
   return (
     <div>
       <div>
@@ -76,6 +102,7 @@ const CreateGame = () => {
                 name="name"
                 onChange={handleChange}
               />
+              {error.name && <p>{error.name}</p>}
             </div>
             <div>
               <label htmlFor="">Image:</label>
@@ -86,6 +113,7 @@ const CreateGame = () => {
                 placeholder="Insert the link of your image"
                 onChange={handleChange}
               />
+              {error.image && <p>{error.image}</p>}
             </div>
             <div>
               <label htmlFor="">Description:</label>
@@ -95,6 +123,7 @@ const CreateGame = () => {
                 name="description"
                 onChange={handleChange}
               />
+              {error.description && <p>{error.description}</p>}
             </div>
             <div>
               <label htmlFor="">Platforms:</label>
@@ -104,6 +133,7 @@ const CreateGame = () => {
                 name="platforms"
                 onChange={handleChange}
               />
+              {error.platforms && <p>{error.platforms}</p>}
             </div>
             <div>
               <label htmlFor="">Release date:</label>
@@ -113,19 +143,12 @@ const CreateGame = () => {
                 name="date"
                 onChange={handleChange}
               />
-            </div>
-            <div>
-              <label htmlFor="">Rating:</label>
-              <input
-                type="number"
-                value={input.rating}
-                name="rating"
-                onChange={handleChange}
-              />
+              {error.date && <p>{error.date}</p>}
             </div>
 
             <div>
               <label htmlFor="">Genres:</label>
+              <p>Please select at least one genre:</p>
               {genres.map((genre, i) => {
                 return (
                   <label key={i}>
@@ -139,8 +162,21 @@ const CreateGame = () => {
                   </label>
                 );
               })}
+              {error.genres && <p>{error.genres}</p>}
             </div>
-            <button type="submit">Create!</button>
+            <div>
+              <label htmlFor="">Rating:</label>
+              <input
+                type="number"
+                value={input.rating}
+                name="rating"
+                onChange={handleChange}
+              />
+              {error.rating && <p>{error.rating}</p>}
+            </div>
+            <button type="submit" id="submit" disabled={!isFormValid}>
+              Create!
+            </button>
           </form>
         </div>
         <div>

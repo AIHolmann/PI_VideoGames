@@ -11,3 +11,5 @@ export const GET_NAME_VIDEOGAMES = "GET_NAME_VIDEOGAMES";
 export const GET_GENRE = "GET_GENRE";
 
 export const POST_VIDEOGAME = "POST_VIDEOGAME";
+
+export const GET_DETAIL = "GET_DETAIL";

@@ -6,12 +6,14 @@ import {
   GET_NAME_VIDEOGAMES,
   GET_GENRE,
   POST_VIDEOGAME,
+  GET_DETAIL,
 } from "../action-types";
 
 let initialState = {
   videogames: [],
   allVideogames: [],
   genres: [],
+  detail: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -107,6 +109,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         videogames: action.payload,
         //allVideogames:action.payload para que funcione el filtrado
+      };
+
+    case GET_DETAIL:
+      return {
+        ...state,
+        detail: action.payload,
       };
     default:
       return { ...state };

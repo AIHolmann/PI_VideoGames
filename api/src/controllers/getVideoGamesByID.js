@@ -16,6 +16,7 @@ const getVideogamesByID = async (req, res) => {
       image: data.background_image,
       description: data.description,
       platforms: data.parent_platforms.map((plat) => plat.platform.name),
+      date: data.released,
       rating: data.rating,
       genres: data.genres.map((genre) => genre.name),
     };

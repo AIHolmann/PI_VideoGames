@@ -104,6 +104,7 @@ const Home = () => {
                 image={vg?.image}
                 genre={vg?.genre}
                 genres={vg?.genres}
+                id={vg?.id}
               />
             ))}
           <Pager

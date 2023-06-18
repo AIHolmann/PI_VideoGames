@@ -5,6 +5,7 @@ import {
   ORDER,
   GET_NAME_VIDEOGAMES,
   GET_GENRE,
+  GET_DETAIL,
 } from "../action-types";
 import axios from "axios";
 
@@ -38,6 +39,16 @@ export const getGenre = () => {
   return async function (dispatch) {
     const { data } = await axios("http://localhost:3001/genres");
     return dispatch({ type: GET_GENRE, payload: data });
+  };
+};
+
+export const getDetail = (id) => {
+  return async function (dispatch) {
+    const { data } = await axios("http://localhost:3001/videogames/" + id);
+    return dispatch({
+      type: GET_DETAIL,
+      payload: data,
+    });
   };
 };
 
