@@ -3,15 +3,15 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getVideogames,
-  filterVideogames /*
+  filterVideogames,
   filterOrigin,
-  Order,*/,
+  Order,
 } from "../../redux/actions";
-
 import NavBar from "../NavBar/NavBar";
 import Pager from "../Pager/Pager";
 import Footer from "../Footer/Footer";
 import Card from "../Card/Card";
+import style from "./home.module.css";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -41,9 +41,8 @@ const Home = () => {
     let valor = e.target.value;
     e.preventDefault();
     dispatch(filterVideogames(valor));
-    console.log(valor);
   };
-  /*
+
   const handleFilterOrigin = (e) => {
     e.preventDefault();
     dispatch(filterOrigin(e.target.value));
@@ -55,14 +54,15 @@ const Home = () => {
     setCurrentPage(1);
     setOrden(`Ordenado ${e.target.value}`);
   };
-*/
+
   return (
     <div>
       <NavBar handleReload={handleReload} />
-      <div>
-        <aside>
-          <select onChange={handleFilterGenre}>
-            <option value="All">Todos</option>
+      <div className={style.containerhome}>
+        <aside className={style.aside}>
+          <label htmlFor="">Filter by gender</label>
+          <select onChange={handleFilterGenre} className={style.select}>
+            <option value="All">All</option>
             <option value="Action">Action</option>
             <option value="Indie">Indie</option>
             <option value="Adventure">Adventure</option>
@@ -83,19 +83,22 @@ const Home = () => {
             <option value="Educational">Educational</option>
             <option value="Card">Card</option>
           </select>
-          <select /*onChange={handleFilterOrigin}*/>
-            <option value="All">Todos</option>
-            <option value="Api">Traidos de la API</option>
-            <option value="DB">Creados por tí</option>
+          <label htmlFor="">Filter by origin</label>
+          <select onChange={handleFilterOrigin} className={style.select}>
+            <option value="All">All</option>
+            <option value="Api">From the API</option>
+            <option value="DB">Created by you</option>
           </select>
-          <select /*onChange={handleOrder}*/>
-            <option value="ascAlf">Ascendente Alfabeticamente</option>
-            <option value="descAlf">Descendente Alfabeticamente</option>
-            <option value="ascRat">Ascendente Rating</option>
-            <option value="descRat">Descendente Rating</option>
+          <label htmlFor="">Order the games</label>
+          <select onChange={handleOrder} className={style.select}>
+            <option value="All">Restart order</option>
+            <option value="ascAlf">Ascending alphabetically</option>
+            <option value="descAlf">Descending alphabetically</option>
+            <option value="ascRat">Highest rating</option>
+            <option value="descRat">Lower rating</option>
           </select>
         </aside>
-        <article>
+        <article className={style.article}>
           {currentGames &&
             currentGames.map((vg) => (
               <Card
@@ -113,9 +116,9 @@ const Home = () => {
             paginado={paginado}
           />
         </article>
-        <footer>
-          <Footer />
-        </footer>
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );

@@ -1,0 +1,50 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  z-index: 100;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: var(--deep-sky-blue);
+  padding: 4px;
+  border-bottom: solid 1px black;
+}
+
+.welcome {
+  margin-top: 7px;
+  margin-bottom: 7px;
+  margin-left: 10px;
+  margin-right: 150px;
+}
+.reload {
+  font-size: x-small;
+  margin: 05px;
+  border-radius: 12px;
+  transition: 0.3s ease-in-out;
+  text-transform: uppercase;
+  padding: 0.5rem;
+  border: 2px solid black;
+  text-align: center;
+}
+
+.reload:hover {
+  background-color: var(--yellow-green);
+  cursor: pointer;
+  color: black;
+  transform: scale(1.2);
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  font-size: small;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

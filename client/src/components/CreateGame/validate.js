@@ -39,9 +39,9 @@ const validate = (input) => {
     error.date = "";
   }
 
-  if (!/^(10(\.0)?|[0-9](\.[0-9])?)$/.test(input.rating)) {
+  if (!/^(5(\.0)?|[0-4](\.[0-9])?)$/.test(input.rating)) {
     error.rating =
-      "The rating must be from 0 to 10. Only one decimal is accepted.";
+      "The rating must be from 0 to 5. Only one decimal is accepted.";
   } else {
     error.rating = "";
   }

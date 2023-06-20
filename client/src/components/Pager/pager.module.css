@@ -1,0 +1,23 @@
+.ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.li {
+  margin: 10px;
+  border: 1px solid black;
+  background-color: white;
+  padding: 7px;
+  border-radius: 5px;
+  transition: 0.4s ease-out;
+}
+
+.li:hover {
+  transform: scale(1.4);
+  color: white;
+  background-color: black;
+  cursor: pointer;
+}

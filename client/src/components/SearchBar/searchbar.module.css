@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.label {
+  margin-right: 1px;
+}
+
+.input {
+  border: solid 2px #343434;
+  border-radius: 12px;
+  padding: 5px;
+  margin-left: 4px;
+  margin-right: 2px;
+  transition: 0.3s ease-in-out;
+}
+.buton {
+  margin-left: 5px;
+  margin-right: 10px;
+  transition: 0.3s ease-in-out;
+}
+
+.buton:hover {
+  transform: scale(1.06);
+  cursor: pointer;
+}

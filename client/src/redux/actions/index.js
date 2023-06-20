@@ -66,7 +66,7 @@ export const postVideogame = (payload) => {
 export const filterVideogames = (payload) => {
   return { type: FILTER_BY_GENRE, payload };
 };
-/*
+
 export const filterOrigin = (payload) => {
   return { type: FILTER_BY_ORIGIN, payload };
 };
@@ -74,4 +74,3 @@ export const filterOrigin = (payload) => {
 export const Order = (payload) => {
   return { type: ORDER, payload };
 };
-*/

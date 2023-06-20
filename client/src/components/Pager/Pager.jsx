@@ -1,3 +1,5 @@
+import style from "./pager.module.css";
+
 const Pager = ({ gamesPerPage, allGames, paginado }) => {
   const pageNumber = [];
 
@@ -7,11 +9,15 @@ const Pager = ({ gamesPerPage, allGames, paginado }) => {
 
   return (
     <nav>
-      <ul>
+      <ul className={style.ul}>
         {pageNumber &&
           pageNumber.map((number) => {
             return (
-              <li onClick={() => paginado(number)} key={number}>
+              <li
+                onClick={() => paginado(number)}
+                key={number}
+                className={style.li}
+              >
                 {number}
               </li>
             );

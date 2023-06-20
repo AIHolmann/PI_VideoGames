@@ -20,6 +20,7 @@ const getAllVideoGamesByAPI = async (req, res) => {
         let obj = {
           id: game.id,
           name: game.name,
+          rating: game.rating,
           image: game.background_image,
           genres: game.genres.map((genre) => {
             return {
@@ -40,7 +41,7 @@ const getAllVideoGamesByAPI = async (req, res) => {
 const getAllVideoGamesByDB = async () => {
   try {
     const videoGamesDB = await Videogame.findAll({
-      attributes: ["id", "name", "image", "inDB"],
+      attributes: ["id", "name", "image", "inDB", "rating"],
       include: [
         {
           model: Genre,

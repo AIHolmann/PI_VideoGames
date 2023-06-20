@@ -47,63 +47,44 @@ const rootReducer = (state = initialState, action) => {
     case POST_VIDEOGAME:
       return { ...state };
 
-    /*
     case FILTER_BY_ORIGIN:
-      const filteredorigin = state.allVideogames;
+      const filteredorigin = state.videogames;
       const createdFilter =
         action.payload === "DB"
-          ? filteredorigin.filter((el) => el.inDB)
-          : filteredorigin.filter((el) => !el.inDB);
+          ? filteredorigin.filter((el) => el.inDB === true)
+          : state.allVideogames.filter((el) => el.inDB !== true);
       return {
         ...state,
-        videogames: action.payload === "All" ? state.videogames : createdFilter,
+        videogames:
+          action.payload === "All" ? state.allVideogames : createdFilter,
       };
 
     case ORDER:
-      let sortedVid =
-        action.payload === "ascAlf"
-          ? state.videogames.sort(function (a, b) {
-              if (a.name > b.name) {
-                return 1;
-              }
-              if (b.name > a.name) {
-                return -1;
-              }
-              return 0;
-            })
-          : action.payload === "descAlf"
-          ? state.videogames.sort(function (a, b) {
-              if (a.name > b.name) {
-                return -1;
-              }
-              if (b.name > a.name) {
-                return 1;
-              }
-              return 0;
-            })
-          : action.payload === "ascRat"
-          ? state.videogames.sort(function (a, b) {
-              if (a.rating > b.rating) {
-                return 1;
-              }
-              if (b.rating > a.rating) {
-                return -1;
-              }
-              return 0;
-            })
-          : state.videogames.sort(function (a, b) {
-              if (a.rating > b.rating) {
-                return -1;
-              }
-              if (b.ratin > a.rating) {
-                return 1;
-              }
-              return 0;
-            });
+      let sortedVid = [...state.videogames];
+      switch (action.payload) {
+        case "All":
+          sortedVid = [...state.allVideogames];
+          break;
+        case "ascAlf":
+          sortedVid.sort((a, b) => a.name.localeCompare(b.name));
+          break;
+        case "descAlf":
+          sortedVid.sort((a, b) => b.name.localeCompare(a.name));
+          break;
+        case "descRat":
+          sortedVid.sort((a, b) => parseFloat(a.rating) - parseFloat(b.rating));
+          break;
+        case "ascRat":
+          sortedVid.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating));
+          break;
+        default:
+          break;
+      }
       return {
         ...state,
         videogames: sortedVid,
-      };*/
+      };
+
     case GET_NAME_VIDEOGAMES:
       return {
         ...state,
