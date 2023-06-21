@@ -21,8 +21,8 @@ const Detail = () => {
         <div className={style.contall}>
           <div className={style.innercont}>
             <h1 className={style.name}>{detail?.name}</h1>
+            <h2>Description:</h2>
             <div className={style.description}>
-              <h2>Description:</h2>
               {isNaN(id) ? (
                 <p>{detail.description}</p>
               ) : (
@@ -33,27 +33,31 @@ const Detail = () => {
             </div>
             <h2>Rating: {detail.rating}</h2>
             <h2>Release Date: {detail.date}</h2>
-            <h2>Platforms:</h2>
-            <ul>
-              {isNaN(id)
-                ? detail?.platforms?.split(" ").map((el, i) => {
-                    return <li key={i}>{el}</li>;
-                  })
-                : detail.platforms.map((el, i) => {
-                    return <li key={i}>{el}</li>;
-                  })}
-            </ul>
-            <h2>Genres:</h2>
-            <ul>
-              {isNaN(id)
-                ? detail.genres.map((el, i) => {
-                    return <li key={i}>{el.name}</li>;
-                  })
-                : detail.genres.map((el, i) => {
-                    return <li key={i}>{el}</li>;
-                  })}
-            </ul>
-            <Link to="/home">Home</Link>
+            <div className={style.lowerinfo}>
+              <h2>Platforms:</h2>
+              <ul>
+                {isNaN(id)
+                  ? detail?.platforms?.split(" ").map((el, i) => {
+                      return <li key={i}>{el}</li>;
+                    })
+                  : detail.platforms.map((el, i) => {
+                      return <li key={i}>{el}</li>;
+                    })}
+              </ul>
+              <h2>Genres:</h2>
+              <ul>
+                {isNaN(id)
+                  ? detail.genres.map((el, i) => {
+                      return <li key={i}>{el.name}</li>;
+                    })
+                  : detail.genres.map((el, i) => {
+                      return <li key={i}>{el}</li>;
+                    })}
+              </ul>
+            </div>
+            <Link to="/home" className={style.link}>
+              Home
+            </Link>
           </div>
           <div className={style.rigth}>
             <img src={detail?.image} alt="" className={style.img} />

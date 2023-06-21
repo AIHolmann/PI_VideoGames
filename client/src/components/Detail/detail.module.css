@@ -12,13 +12,15 @@
 .contall {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  flex-wrap: nowrap;
+  justify-content: center;
   align-items: center;
   align-content: center;
+
+  height: 100%;
 }
 
-.inncercont {
+.innercont {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -31,13 +33,14 @@
 .name {
   color: blanchedalmond;
   margin: 10px;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
   transition: 0.3s ease-in-out;
+  font-size: 40px;
 }
 
 .name:hover {
-  font-size: 35px;
-  color: #159897;
+  font-size: 42px;
+  color: #128888;
 }
 
 .rigth {
@@ -47,15 +50,64 @@
   justify-content: center;
   align-items: center;
   align-content: center;
+  border: 5px black solid;
 }
 
 .description {
   font-size: x-small;
   width: 900px;
+  max-width: 900px;
+  max-height: 200px;
+  overflow: auto;
+  border: 3px solid blanchedalmond;
+  padding: 3px;
+}
+
+.lowerinfo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .img {
-  margin: 10px;
-  width: 500px;
-  height: 500px;
+  max-width: 515px;
+  max-height: 515px;
+}
+
+h2 {
+  margin: 15px;
+}
+
+.lowerinfo ul {
+  margin-right: 10px;
+}
+
+.lowerinfo h2 {
+  margin: 0;
+  margin-right: 10px;
+}
+
+.lowerinfo li {
+  margin-right: 50px;
+}
+
+.link {
+  text-align: center;
+  text-decoration: none;
+  border-radius: 12px;
+  border: 2px solid black;
+  padding: 15px;
+  color: black;
+  transition: 0.4s ease-in-out;
+  background-color: var(--deep-sky-blue);
+}
+
+.link:hover {
+  background-color: #282828;
+  color: var(--deep-sky-blue);
+}
+
+.link:focus {
+  transform: scale(1.05);
 }

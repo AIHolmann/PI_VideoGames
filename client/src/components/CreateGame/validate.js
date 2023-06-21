@@ -28,7 +28,7 @@ const validate = (input) => {
 
   if (!input.platforms || !/^[A-Za-z0-9\s]{2,100}$/.test(input.platforms)) {
     error.platforms =
-      "A minimum of 2 characters and a maximum of 100 is required. Each platform must be separated by a single space.";
+      "From 2 to 100 characters allowed. Each platform must be separated by a single space.";
   } else {
     error.platforms = "";
   }
