@@ -24,6 +24,7 @@ const CreateGame = () => {
     platforms: "",
     date: "",
     rating: 0,
+    stock: 0,
   });
 
   const handleChange = (e) => {
@@ -71,6 +72,7 @@ const CreateGame = () => {
       platforms: "",
       date: "",
       rating: 0,
+      stock: "",
     });
   };
 
@@ -175,6 +177,15 @@ const CreateGame = () => {
                 })}
               </div>
               {error.genres && <p>{error.genres}</p>}
+            </div>
+            <div>
+              <label htmlFor="">stock</label>
+              <input
+                value={input.stock}
+                name="stock"
+                type="number"
+                onChange={handleChange}
+              />
             </div>
             <div className={style.description}>
               <label htmlFor="">Rating:</label>

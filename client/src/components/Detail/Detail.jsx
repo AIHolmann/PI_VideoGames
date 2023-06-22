@@ -54,6 +54,9 @@ const Detail = () => {
                       return <li key={i}>{el}</li>;
                     })}
               </ul>
+              <div>
+                <p>Stock: {detail?.stock}</p>
+              </div>
             </div>
             <Link to="/home" className={style.link}>
               Home
@@ -66,7 +69,12 @@ const Detail = () => {
       ) : (
         <div>
           <h2>Loading...</h2>
-          <img src={loading} alt="It's me! Mario!" />
+          <img
+            src={loading}
+            alt="It's me! Mario!"
+            width={"400px"}
+            height={"600px"}
+          />
         </div>
       )}
     </div>

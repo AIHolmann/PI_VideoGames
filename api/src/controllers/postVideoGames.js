@@ -5,8 +5,17 @@ const { Videogame, Genre } = require("../db");
 
 const postVideoGames = async (req, res) => {
   try {
-    const { name, description, platforms, image, date, rating, genres, inDB } =
-      req.body;
+    const {
+      name,
+      description,
+      platforms,
+      image,
+      date,
+      rating,
+      genres,
+      inDB,
+      stock,
+    } = req.body;
     //  console.log(name, description, platforms, image, date, rating, genre, inDB);
     let videojuego = await Videogame.create({
       name,
@@ -14,6 +23,7 @@ const postVideoGames = async (req, res) => {
       platforms,
       image,
       date,
+      stock,
       rating,
       inDB,
     });

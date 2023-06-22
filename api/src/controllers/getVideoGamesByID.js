@@ -20,6 +20,7 @@ const getVideogamesByID = async (req, res) => {
           "description",
           "platforms",
           "date",
+          "stock",
           "rating",
         ],
         include: [

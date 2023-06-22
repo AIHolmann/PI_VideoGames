@@ -24,8 +24,9 @@ const Home = () => {
   const [orden, setOrden] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [gamesPerPage, setGamesPerPage] = useState(15);
-  const indexOfLastGame = currentPage * gamesPerPage; //15, pero deberia ser 14
-  const indexOfFirstGame = indexOfLastGame - gamesPerPage; // 0
+  const indexOfLastGame = currentPage * gamesPerPage;
+
+  const indexOfFirstGame = indexOfLastGame - gamesPerPage;
   let currentGames = allGames.slice(indexOfFirstGame, indexOfLastGame);
 
   const handleReload = (e) => {
